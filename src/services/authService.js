@@ -30,25 +30,70 @@ exports.signin=async(req,res)=>{
         });
         if(!user){
             return res.status(404).send({
-                message:'not user found '
+                message:'account doesnt exist'
             })
         }
-        const isValidPassword=bcrypt.compare(req.body.password,user.password);
+        if(!req.body.password)
+        {
+            return res.status(400).send({
+                message:'password is required'
+            })
+        }
+        const isValidPassword= await bcrypt.compare(req.body.password,user.password);
+        console.log(isValidPassword);
         if(!isValidPassword){
-            res.status(401).send({
+            return res.status(401).send({
                 message:'Invalid Password for the given email'
             })
         }
         const token=jwt.sign(
             {
-                id:User.id,email:User.email
+                id:user.id,email:user.email
             },
             process.env.AUTH_KEY,
             {expiresIn:'1d'}
             );
-            
+            return res.status(200).send({
+                message:'Successfully logged In',
+                data:{
+                    email:user.email,
+                    token:token
+                }
+            })
+
     }
     catch(error){
-
+        console.log(error);
+        return res.status(500).send({
+            error:error,
+        })
+    }
+}
+exports.resetPassword=async(req,res)=>{
+    try{
+        const user=await User.findById();
+        if(!user){
+           return res.status(400).send({
+                message:'No user found for the given id'
+            })
+        }
+        const isValidPassword=bcrypt.compare(req.body.oldPassword,user.password);
+        if(!isValidPassword){
+            return res.status(403).send({
+                message:'Invalid Old password please write the correct old password'
+            })
+        }
+        user.password=req.body.newPassword;
+        await user.save();
+        return res.status(200).send({
+            data:user,
+            message:'sucessfully updated the password'
+        })
+    }
+    catch(error){
+        console.log(error);
+        return res.status(500).send({
+            message:'Internal server error'
+        })
     }
 }
