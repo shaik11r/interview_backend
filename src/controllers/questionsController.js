@@ -76,9 +76,27 @@ const getQuestions = async (req, res) => {
     });
   }
 };
+const deleteQuestion = async (req, res) => {
+  try {
+    const questionId = req.params.id;
+    const question = await Question.findByIdAndDelete(questionId);
+    if (!question) {
+      return res.status(404).send({
+        error: "question not found",
+      });
+    }
+    return res.status(204).end();
+  } catch (error) {
+    return res.status(500).send({
+      message: "INTERNAL SERVER ERROR",
+      error: error,
+    });
+  }
+};
 module.exports = {
   createQuestion,
   updateQuestion,
   getAllQuestions,
   getQuestions,
+  deleteQuestion,
 };
