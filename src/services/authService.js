@@ -28,17 +28,6 @@ exports.signin=async(req,res)=>{
         const user=await User.findOne({
             email:req.body.email
         });
-        if(!user){
-            return res.status(404).send({
-                message:'account doesnt exist'
-            })
-        }
-        if(!req.body.password)
-        {
-            return res.status(400).send({
-                message:'password is required'
-            })
-        }
         const isValidPassword= await bcrypt.compare(req.body.password,user.password);
         console.log(isValidPassword);
         if(!isValidPassword){
@@ -72,11 +61,6 @@ exports.signin=async(req,res)=>{
 exports.resetPassword=async(req,res)=>{
     try{
         const user=await User.findById();
-        if(!user){
-           return res.status(400).send({
-                message:'No user found for the given id'
-            })
-        }
         const isValidPassword=bcrypt.compare(req.body.oldPassword,user.password);
         if(!isValidPassword){
             return res.status(403).send({

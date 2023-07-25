@@ -1,12 +1,14 @@
 const express=require('express');
 const { default: mongoose } = require('mongoose');
 const {connectToDb}=require('./src/config/dbConfig');
+const Question=require('./src/models/questionModel');
 const app=express();
 require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 require('./src/routes/authrouter')(app);
+
 app.get('/',(req,res)=>{
     res.send('hi from the server');
 })

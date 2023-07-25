@@ -47,6 +47,7 @@ const isAuthenticated=async(req,res,next)=>{
             })
         }
         const user=await User.findById(response.id);
+        console.log(user);
         req.user=user.id;
         next();
     }
