@@ -1,3 +1,4 @@
+require("dotenv").config();
 const validatePage = (req, res, next) => {
   const page = parseInt(req.query.page);
   if (isNaN(page) || page < 1) {
@@ -5,10 +6,10 @@ const validatePage = (req, res, next) => {
   }
   next();
 };
-const apiKey = "nadeenshaik";
+
 const authenticate = (req, res, next) => {
   const providedApiKey = req.headers["x-api-key"];
-  if (providedApiKey !== apiKey) {
+  if (providedApiKey !== process.env.APIKEY) {
     return res.status(401).send({
       error: "Unauthorized",
     });
