@@ -47,7 +47,8 @@ const updateQuestion = async (req, res) => {
 const getAllQuestions = async (req, res) => {
   try {
     const questions = await Question.find();
-    return res.status.send({
+    console.log(questions);
+    return res.status(200).send({
       message: "sucessfully fetched",
       data: questions,
     });

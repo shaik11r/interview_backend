@@ -10,7 +10,6 @@ exports.signup = async (req, res) => {
       password: req.body.password,
     };
     const response = await User.create(userObject);
-    console.log(response);
     return res.status(201).send({
       data: response,
       message: "Successfully registered a user",
@@ -28,7 +27,6 @@ exports.signin = async (req, res) => {
       email: req.body.email,
     });
     const isValidPassword = await bcrypt.compare(req.body.password, user.password);
-    console.log(isValidPassword);
     if (!isValidPassword) {
       return res.status(401).send({
         message: "Invalid Password for the given email",
