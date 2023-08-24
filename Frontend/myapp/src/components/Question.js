@@ -8,8 +8,12 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 function Question() {
   const [data, setData] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const handleOnClick = (event, value) => {
+    setPageNumber(value);
+  };
   async function fetchData() {
-    const appData = await fetch("http://localhost:8080/api/questions?page=1");
+    const appData = await fetch(`http://localhost:8080/api/questions?page=${pageNumber}`);
     if (!appData) {
       throw new Error("failed to fetch data");
     }
@@ -23,7 +27,7 @@ function Question() {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [pageNumber]);
   return (
     <div className="question_main">
       {data.map((val) => {
@@ -48,20 +52,30 @@ function Question() {
                   {val.title}
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails  style={{
+              <AccordionDetails
+                style={{
                   background: "#121111",
                 }}>
-                <Typography className="answer"
-                 style={{
-                    color:'white'
-                  }}>{val.answer}</Typography>
+                <Typography
+                  className="answer"
+                  style={{
+                    color: "white",
+                  }}>
+                  {val.answer}
+                </Typography>
               </AccordionDetails>
             </Accordion>
           </div>
         );
       })}
-      <Stack spacing={2} className="pagination" >
-        <Pagination count={10} color="secondary" style={{color:'white'}}/>
+      <Stack spacing={2} className="pagination">
+        <Pagination
+          count={4}
+          pageNumber={pageNumber}
+          color="secondary"
+          style={{ color: "white" }}
+          onChange={handleOnClick}
+        />
       </Stack>
     </div>
   );
