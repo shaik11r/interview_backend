@@ -11,12 +11,12 @@ import Shimmer from "./Shimmer";
 function Question() {
   const { subject } = useParams();
   const [data, setData] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pagenumber, setPageNumber] = useState(1);
   const handleOnClick = (event, value) => {
     setPageNumber(value);
   };
   async function fetchData() {
-    const appData = await fetch(`${BASE_URL}/api/${subject}/questions?page=${pageNumber}`);
+    const appData = await fetch(`${BASE_URL}/api/${subject}/questions?page=${pagenumber}`);
     if (!appData) {
       throw new Error("failed to fetch data");
     }
@@ -29,14 +29,14 @@ function Question() {
     return () => {
       controller.abort();
     };
-  }, [pageNumber, subject]);
+  }, [pagenumber, subject]);
   return data.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="question_main">
       {data.map((val) => {
         return (
-          <div className="questions">
+          <div className="questions" key={val._id}>
             <Accordion>
               <AccordionSummary
                 style={{
@@ -75,7 +75,7 @@ function Question() {
       <Stack spacing={2} className="pagination">
         <Pagination
           count={4}
-          pageNumber={pageNumber}
+          pagenumber={pagenumber}
           color="secondary"
           style={{ color: "white" }}
           onChange={handleOnClick}

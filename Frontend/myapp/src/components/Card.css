@@ -15,6 +15,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  max-width: 1200px;
   width: 100%;
 }
 .Card_font {
@@ -64,5 +65,24 @@
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+@media (max-width: 800px) {
+  .Card_main {
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .gradient_border {
+    display: flex;
+    flex-direction: column;
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 0;
+  }
+  .gradient_border > img {
+    max-width: 50px;
+    width: 100%;
   }
 }
