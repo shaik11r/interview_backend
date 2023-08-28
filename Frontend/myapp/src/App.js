@@ -1,10 +1,9 @@
-import Question from "./components/Question";
 import Body from "./components/Body";
 import Navbar from "./components/Navbar";
 import "./App.css";
-import Category from "./components/Category";
 import Card from "./components/Card";
 import { Outlet } from "react-router-dom";
+import Shimmer from "./components/Shimmer";
 
 function App() {
   return (
@@ -13,7 +12,8 @@ function App() {
       <div className="App">
         <Body />
         <Card />
-        <Outlet/>
+        {/* <Shimmer /> */}
+        <Outlet />
       </div>
     </>
   );
