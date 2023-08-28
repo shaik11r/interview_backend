@@ -1,8 +1,7 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const { connectToDb } = require("./src/config/dbConfig");
-const Question = require("./src/models/questionModel");
-const cors=require('cors');
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 app.use(cors());
@@ -10,6 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 require("./src/routes/authrouter")(app);
 require("./src/routes/questionRoutes")(app);
+require("./src/routes/nodeRouter")(app);
 app.get("/", (req, res) => {
   res.send("hi from the server");
 });
