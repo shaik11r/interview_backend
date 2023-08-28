@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import Category from "./components/Category";
 import Card from "./components/Card";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -11,9 +12,8 @@ function App() {
       <Navbar></Navbar>
       <div className="App">
         <Body />
-        {/* <Category/> */}
         <Card />
-        <Question />
+        <Outlet/>
       </div>
     </>
   );

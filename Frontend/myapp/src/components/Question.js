@@ -3,23 +3,24 @@ import { Accordion } from "@mui/material";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { BASE_URL } from "../constants";
+import { useLocation, useParams } from "react-router-dom";
 function Question() {
+  const { subject } = useParams();
   const [data, setData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const handleOnClick = (event, value) => {
     setPageNumber(value);
   };
   async function fetchData() {
-    const appData = await fetch(`http://localhost:8080/api/questions?page=${pageNumber}`);
+    const appData = await fetch(`${BASE_URL}/api/${subject}/questions?page=${pageNumber}`);
     if (!appData) {
       throw new Error("failed to fetch data");
     }
     const response = await appData.json();
     setData(response.data);
-    console.log(data);
   }
   useEffect(() => {
     const controller = new AbortController();
@@ -27,7 +28,7 @@ function Question() {
     return () => {
       controller.abort();
     };
-  }, [pageNumber]);
+  }, [pageNumber, subject]);
   return (
     <div className="question_main">
       {data.map((val) => {
