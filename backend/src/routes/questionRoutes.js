@@ -4,28 +4,28 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const routes = (app) => {
   app.get(
-    "/api/questions",
+    "/api/react/questions",
     // authMiddleware.isAuthenticated,
     // questionMiddleware.validatePage,
     questionController.getQuestions
   );
 
-  app.get("/api/questionsall", questionController.getAllQuestions);
+  app.get("/api/react/questionsall", questionController.getAllQuestions);
 
   app.put(
-    "/api/questions/:id",
+    "/api/react/questions/:id",
     authMiddleware.isAuthenticated,
     questionMiddleware.authenticate,
     questionController.updateQuestion
   );
 
   app.delete(
-    "/api/questions/:id",
+    "/api/react/questions/:id",
     authMiddleware.isAuthenticated,
     questionMiddleware.authenticate,
     questionController.deleteQuestion
   );
 
-  app.post("/api/questions", authMiddleware.isAuthenticated, questionController.createQuestion);
+  app.post("/api/react/questions", authMiddleware.isAuthenticated, questionController.createQuestion);
 };
 module.exports = routes;
