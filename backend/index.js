@@ -2,7 +2,6 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const { connectToDb } = require("./src/config/dbConfig");
 const cors = require("cors");
-const JavaQuestion = require("./src/models/javaQuestion");
 const app = express();
 require("dotenv").config();
 app.use(cors());
