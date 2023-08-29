@@ -13,6 +13,11 @@ const router = createBrowserRouter([
         path: "/:subject",
         element: <Question />,
       },
+      {
+        // Handle the case when subject is not provided
+        path: "/",
+        element: <Question />,
+      },
     ],
   },
 ]);

@@ -6,17 +6,22 @@ import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { BASE_URL } from "../constants";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
+import deflogo from "../assests/icons8-node-js.svg";
 import Shimmer from "./Shimmer";
 function Question() {
-  const { subject } = useParams();
+  const { subject = "node" } = useParams();
+  const location = useLocation();
+  const { propsToPass } = location.state || {};
+  const { source } = propsToPass || {};
   const [data, setData] = useState([]);
   const [pagenumber, setPageNumber] = useState(1);
   const handleOnClick = (event, value) => {
     setPageNumber(value);
   };
+  const apiUrl = subject ? `${BASE_URL}/api/${subject}/questions` : `${BASE_URL}/api/react/questions`;
   async function fetchData() {
-    const appData = await fetch(`${BASE_URL}/api/${subject}/questions?page=${pagenumber}`);
+    const appData = await fetch(`${apiUrl}?page=${pagenumber}`);
     if (!appData) {
       throw new Error("failed to fetch data");
     }
@@ -34,6 +39,7 @@ function Question() {
     <Shimmer />
   ) : (
     <div className="question_main">
+      {<img src={source ? source : deflogo} alt="soucelogo" />}
       {data.map((val) => {
         return (
           <div className="questions" key={val._id}>

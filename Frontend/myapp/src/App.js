@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import Card from "./components/Card";
 import { Outlet } from "react-router-dom";
-import Shimmer from "./components/Shimmer";
+import Footer from './components/footer'
 
 function App() {
   return (
@@ -12,9 +12,9 @@ function App() {
       <div className="App">
         <Body />
         <Card />
-        {/* <Shimmer /> */}
         <Outlet />
       </div>
+      <Footer/>
     </>
   );
 }

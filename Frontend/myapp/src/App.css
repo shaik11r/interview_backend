@@ -1,26 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&family=Itim&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handjet:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
 .App {
   /* border: 2px solid red; */
   max-width: 1200px;
   width: 90%;
   margin: 0 auto;
 }
-.question_main {
-  position: relative;
-  top: 100px;
-  padding-bottom: 100px;
-}
 .questions {
   padding: 1rem;
 }
-.question {
-  margin-bottom: 1rem;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.3rem;
-  font-weight: 700;
-  padding: 5px;
-}
+
 .answer {
   background-color: rgba(0, 0, 0, 0.453);
   padding: 10px;
@@ -48,6 +38,7 @@
 }
 .navbar_right > button {
   background-color: transparent;
+
   cursor: pointer;
   border: none;
   padding: 10px;
@@ -82,17 +73,16 @@
   align-items: center;
 }
 .navbar_logo {
-  font-size: 2.5rem;
-  font-weight: 600;
+  font-size: 3rem;
   background: rgb(228, 149, 10);
   background: linear-gradient(
-    32deg,
-    rgba(228, 149, 10, 0.9780287114845938) 40%,
-    rgba(255, 255, 255, 1) 58%,
+    rgba(228, 149, 10, 0.9780287114845938) 25%,
+    rgba(255, 255, 255, 1) 40%,
     rgba(8, 194, 29, 1) 100%
   );
   background-clip: text;
   color: transparent;
+  font-family: "Dancing Script", cursive;
 }
 .category_main {
   border: 1px solid lime;
@@ -123,4 +113,105 @@
 }
 .category_custom {
   display: flex;
+}
+
+.question {
+  margin-bottom: 1rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 5px;
+}
+.question_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 100px;
+  padding-bottom: 100px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.question_main::after {
+  display: flex;
+  align-self: center;
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 16px;
+  margin: 0 auto;
+  width: 100%;
+  height: 280%;
+  z-index: -1;
+  background: linear-gradient(#a166ab, #5073b8);
+}
+.question_main::before {
+  content: "";
+  background-color: #121111;
+  position: absolute;
+  inset: 5px;
+  border-radius: 16px;
+}
+.question_main > img {
+  position: relative;
+  top: 10px;
+  width: 100px;
+  height: 100px;
+}
+.footer_first {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  padding: 20px 10px 20px 10px;
+  color: white;
+  margin-top: 200px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 16px;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    60deg,
+    rgba(131, 58, 180, 1) 14%,
+    rgb(7, 63, 231) 27%,
+    rgb(223, 85, 72) 64%,
+    rgb(174, 48, 128) 97%
+  );
+  animation: animatedgradient 10s ease alternate infinite;
+  background-size: 300% 300%;
+}
+.footer_second {
+  display: flex;
+  flex-direction: column;
+}
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.whatsapp img,
+.instagram img,
+.linkedin img {
+  width: 20px;
+}
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

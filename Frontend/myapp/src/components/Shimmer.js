@@ -5,12 +5,11 @@ import Typography from "@mui/material/Typography";
 
 function Shimmer() {
   let arr = new Array(20).fill(0);
-  console.log(arr);
   return (
     <div className="question_main">
-      {arr.map((val) => {
+      {arr.map((val,index) => {
         return (
-          <div className="questions">
+          <div className="questions" key={index}>
             <Accordion>
               <AccordionSummary
                 style={{
