@@ -51,10 +51,10 @@ function Question() {
                 <Typography
                   className="question"
                   style={{
-                    background: "linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
+                    // background: "linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%)",
+                    // WebkitBackgroundClip: "text",
+                    // backgroundClip: "text",
+                    color: "white",
                     fontSize: "16px",
                     fontWeight: "500",
                     fontFamily: "sans-serif",
