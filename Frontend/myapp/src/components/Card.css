@@ -75,6 +75,10 @@
     width: 100%;
     margin-bottom: 100px;
   }
+  .Card_font {
+    font-size: 1rem;
+    font-family: monospace;
+  }
   .gradient_border {
     display: flex;
     flex-direction: column;

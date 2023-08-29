@@ -21,7 +21,7 @@ function Footer() {
                 <img src={navIcon3} alt="icon" />
               </Link>
             </div>
-            <p>Copyright 2023. All Rights Reserved</p>
+            <p className="para">Copyright 2023. All Rights Reserved</p>
           </div>
         </div>
   );

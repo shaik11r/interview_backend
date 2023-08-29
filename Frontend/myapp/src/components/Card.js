@@ -15,22 +15,22 @@ function Card() {
   };
   const array = [
     {
-      name: "javaScript",
+      name: "JavaScript",
       source: js,
       subject: "javaScript",
     },
     {
-      name: "node",
+      name: "Node",
       source: node,
       subject: "node",
     },
     {
-      name: "react",
+      name: "React",
       source: react,
       subject: "react",
     },
     {
-      name: "java",
+      name: "Java",
       source: java,
       subject: "java",
     },
