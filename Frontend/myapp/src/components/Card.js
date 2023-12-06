@@ -39,7 +39,11 @@ function Card() {
     <div className="Card_main">
       {array.map((val) => {
         return (
-          <div className="gradient_border" id="box" onClick={() => handleOnClick(val.subject, val.source)}>
+          <div
+            className="gradient_border"
+            id="box"
+            key={val.name}
+            onClick={() => handleOnClick(val.subject, val.source)}>
             <img src={val.source} alt="reactjs" />
             <div className="Card_font">{val.name}</div>
           </div>

@@ -6,8 +6,8 @@ function Navbar() {
           <span className="navbar_logo">CrackIt</span>
         </section>
         <section className="navbar_right">
-          <button>SignIn</button>
-          <button>SignUp</button>
+          {/* <button>SignIn</button>
+          <button>SignUp</button> */}
         </section>
       </div>
     </header>

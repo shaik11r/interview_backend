@@ -19,14 +19,24 @@ function Question() {
   const handleOnClick = (event, value) => {
     setPageNumber(value);
   };
-  const apiUrl = subject ? `${BASE_URL}/api/${subject}/questions` : `${BASE_URL}/api/react/questions`;
+  const apiUrl = subject
+    ? `${BASE_URL}/api/${subject}/questions`
+    : `${BASE_URL}/api/react/questions`;
   async function fetchData() {
-    const appData = await fetch(`${apiUrl}?page=${pagenumber}`);
-    if (!appData) {
-      throw new Error("failed to fetch data");
+    try {
+      const controller = new AbortController();
+      const signal = controller.signal;
+      const appData = await fetch(`${apiUrl}?page=${pagenumber}`, { signal });
+      if (!appData.ok) {
+        throw new Error("failed to fetch data");
+      }
+      const response = await appData.json();
+      setData(response.data);
+    } catch (error) {
+      if (error.name === "AbortError") {
+        console.log("Fetch aborted");
+      } else console.error("error during fetch", error);
     }
-    const response = await appData.json();
-    setData(response.data);
   }
   useEffect(() => {
     const controller = new AbortController();
@@ -83,7 +93,7 @@ function Question() {
           count={4}
           pagenumber={pagenumber}
           color="secondary"
-          style={{ color: "white" }}
+          style={{ color: "white !important" }}
           onChange={handleOnClick}
         />
       </Stack>

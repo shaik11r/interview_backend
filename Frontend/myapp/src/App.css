@@ -199,6 +199,7 @@
 .linkedin img {
   width: 20px;
 }
+
 @keyframes animate {
   0% {
     transform: rotate(0deg);
